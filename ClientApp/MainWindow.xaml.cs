@@ -24,6 +24,20 @@ namespace ClientApp
         {
             InitializeComponent();
         }
-        
+        private void ContinueButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (Sign_in.IsChecked is true)
+            {
+                MessageBox.Show("Вход");
+                
+            }
+            else if (Sign_up.IsChecked is true)
+            {
+                MessageBox.Show("Регистрация");
+            }
+            else
+                MessageBox.Show("Сделайте выбор!!!");
+
+        }
     }
 }

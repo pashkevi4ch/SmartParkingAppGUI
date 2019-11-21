@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SmartParkingApp.Models;
+using System;
 
 namespace SmartParkingApp
 {
@@ -10,7 +11,6 @@ namespace SmartParkingApp
 
             var manager = new ParkingManager();
 
-            // Sample code goes here           
         }
     }
 }
