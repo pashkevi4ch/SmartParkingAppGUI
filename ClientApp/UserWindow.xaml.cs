@@ -23,5 +23,10 @@ namespace ClientApp
         {
             InitializeComponent();
         }
+
+        private void ContinueButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

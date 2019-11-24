@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ClientApp"
         mc:Ignorable="d"
-        Title="ClientApp" Height="450" Width="800">
+        Title="ClientApp" Height="450" Width="800" WindowStartupLocation="CenterScreen" Background="Black" Foreground="White">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition MaxHeight="100"/>
@@ -21,11 +21,12 @@
             <TextBlock Text="Password" FontSize="15" Margin="0,20,0,0"/>
         </StackPanel>
         <StackPanel Grid.Row="1" HorizontalAlignment="Left" Margin="150,0,0,0">
-            <TextBox BorderThickness="0" FontSize="15"/>
-            <TextBox BorderThickness="0" FontSize="15" Margin="0,20,0,0"/>
-            <TextBox BorderThickness="0" FontSize="15" Margin="0,20,0,0"/>
-            <TextBox BorderThickness="0" FontSize="15" Margin="0,20,0,0"/>
-            <TextBox BorderThickness="0" Width="500"  FontSize="15" Margin="0,20,0,0"/>
+            <TextBox BorderThickness="0" Name="nameTextBox"  FontSize="15"/>
+            <TextBox BorderThickness="0" Name="carPlNumTextBox" FontSize="15" Margin="0,20,0,0"/>
+            <TextBox BorderThickness="0" Name="phoneTextBox" FontSize="15" Margin="0,20,0,0"/>
+            <TextBox BorderThickness="0" Name="loginTextBox" FontSize="15" Margin="0,20,0,0"/>
+            <PasswordBox BorderThickness="0" Name="passwordTextBox" Width="500"  FontSize="15" Margin="0,20,0,0"/>
         </StackPanel>
+        <Button Grid.Row="2" Name="continueButton" Content="Continue" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" Click="ContinueButton_Click"></Button>
     </Grid>
 </Window>

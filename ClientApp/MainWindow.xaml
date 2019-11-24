@@ -40,7 +40,7 @@
 
         </StackPanel>
 
-        <Button Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center" Background="White" BorderBrush="White" Foreground="Black" Name="ContinueButton" Click="ContinueButton_Click" Content="Continue" FontSize="20" Width="100" Height="30"></Button>
+        <Button Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center" Background="White" BorderBrush="White" Foreground="Black" Name="ContinueButton" Click="ContinueButton_Click" Content="Continue" FontSize="20"></Button>
 
     </Grid>
 
