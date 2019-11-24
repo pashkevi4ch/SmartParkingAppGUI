@@ -2,7 +2,7 @@
 using System;
 
 namespace SmartParkingApp.Models {
-    class ParkingSession
+    public class ParkingSession
     {
         // Date and time of arriving at the parking
         public DateTime EntryDt { get; set; }

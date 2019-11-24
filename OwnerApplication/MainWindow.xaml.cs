@@ -10,23 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ClientApp
+namespace OwnerApplication
 {
     /// <summary>
-    /// Логика взаимодействия для UserWindow.xaml
+    /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class UserWindow : Window
+    public partial class MainWindow : Window
     {
-        public UserWindow()
+        public MainWindow()
         {
             InitializeComponent();
-        }
-
-        private void ContinueButton_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

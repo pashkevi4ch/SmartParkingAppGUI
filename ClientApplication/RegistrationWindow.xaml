@@ -1,18 +1,18 @@
-﻿<Window x:Class="ClientApp.UserWindow"
+﻿<Window x:Class="ClientApplication.RegistrationWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:ClientApp"
+        xmlns:local="clr-namespace:ClientApplication"
         mc:Ignorable="d"
-        Title="ClientApp" Height="450" Width="800" WindowStartupLocation="CenterScreen" Background="Black" Foreground="White">
+        Title="RegistrationWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen" Background="Black" Foreground="White">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition MaxHeight="100"/>
             <RowDefinition/>
             <RowDefinition MaxHeight="100"/>
         </Grid.RowDefinitions>
-        <TextBlock Text="Please enter information about you" FontSize="20" FontStyle="Italic" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,20,0,0"/>
+        <TextBlock Grid.Row="0" Text="Please enter information about you" FontSize="20" FontStyle="Italic" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,20,0,0"/>
         <StackPanel Grid.Row="1" HorizontalAlignment="Left" Margin="0,0,0,0" >
             <TextBlock Text="Name" FontSize="15"/>
             <TextBlock Text="Car Plate Number" Margin="0,20,0,0" FontSize="15"/>

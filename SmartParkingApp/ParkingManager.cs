@@ -5,8 +5,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace SmartParkingApp {
-    class ParkingManager
+namespace SmartParkingApp
+{
+    public class ParkingManager
     {
         private List<ParkingSession> pastSessions;
         private List<ParkingSession> activeSessions;
@@ -173,16 +174,16 @@ namespace SmartParkingApp {
             public int Capacity { get; set; }
         }
 
-        private const string TariffsFileName = "data/tariffs.json";
-        private const string ParkingDataFileName = "data/parkingdata.json";
-        private const string UsersFileName = "data/users.json";
+        private const string TariffsFileName = "../../../../data/tariffs.json";
+        private const string ParkingDataFileName = "../../../../data/parkingdata.json";
+        private const string UsersFileName = "../../../../data/users.json";
 
 
         private void LoadData()
         {
             tariffTable = Deserialize<List<Tariff>>(TariffsFileName);
             var data = Deserialize<ParkingData>(ParkingDataFileName);
-            users = Deserialize<List<User>>(UsersFileName);
+            users = Deserialize<List<User>>(UsersFileName) ?? new List<User>();
 
             parkingCapacity = data.Capacity;
             pastSessions = data.PastSessions ?? new List<ParkingSession>();
@@ -192,7 +193,56 @@ namespace SmartParkingApp {
             nextTicketNumber = activeSessions.Count > 0 ? activeSessions.Max(s => s.TicketNumber) + 1 : 1;
         }
 
-        public void WriteUsersData() => Serialize(UsersFileName, users);
+        public void WriteUsersData(User user)
+        {
+            users.Add(user);
+            Serialize(UsersFileName, users);
+        }
+
+
+        public User FindUserByLogin(string login) => users.Find(u => u.Login == login);
+
+
+        public bool UsersParkingSession(int Id, out List<ParkingSession> parkingSessions)
+        {
+            parkingSessions = new List<ParkingSession>();
+            if(activeSessions.Exists(s => s.UserId == Id))
+            {
+                parkingSessions.AddRange(pastSessions.FindAll(s => s.UserId == Id));
+                parkingSessions.Add(activeSessions.Find(s => s.UserId == Id));
+                return true;
+            }
+            else
+            {
+                parkingSessions.AddRange(pastSessions.FindAll(s => s.UserId == Id));
+                return false;
+            }
+        }
+
+
+        public int GetNewUsersId()
+        {
+            if (users.Count != 0)
+                return users[users.Count - 1].Id + 1;
+            else
+                return 1;
+        }
+
+
+        public bool CheckNewUser(User user) => users == null || !users.Exists(u => u.Login == user.Login);
+
+        public bool UserLogin(string login, string password, out User user)
+        {
+            user = new User();
+            if (users.Exists(u => u.Login == login && u.Password == password))
+            {
+
+                user = users.Find(u => u.Login == login);
+                return true;
+            }
+            else
+                return false;
+        }
 
         private void SaveData()
         {
@@ -202,7 +252,6 @@ namespace SmartParkingApp {
                 ActiveSessions = activeSessions,
                 PastSessions = pastSessions
             };
-
             Serialize(ParkingDataFileName, data);
         }
 
