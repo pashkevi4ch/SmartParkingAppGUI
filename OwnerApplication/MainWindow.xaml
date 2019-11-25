@@ -5,8 +5,30 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OwnerApplication"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Background="Black" Foreground="White">
     <Grid>
-           
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <ProgressBar Grid.Row="0" Orientation="Horizontal" Minimum="0" Maximum="100" Name="ParkingStatusBar" HorizontalAlignment="Right" VerticalAlignment="Center" Height="20" Width="300" Margin="0,0,200,0"/>
+        <TextBlock Text="Percent of filled spaces" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" Margin="50,0,0,5"/>
+        <TextBox Name="ParkingStatusBox" FontSize="20" FontStyle="Italic" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,150,0" Background="Black" Foreground="White"/>
+        <ScrollViewer Grid.Row="1">
+            <StackPanel Name="StackInfo"  Grid.Row="1">
+                <TextBox Name="Timer" Background="Black" Foreground="White" Text= "sample" FontSize="30" IsReadOnly="True" TextWrapping="Wrap"/>
+                <TextBox Name="Ticket" Background="Black" Foreground="White" Text="sample" FontSize="30" IsReadOnly="True" TextWrapping="Wrap"/>
+                <TextBox Name="EntryDt" Background="Black" Foreground="White" Text="sample" FontSize="30" IsReadOnly="True" TextWrapping="Wrap"/>
+                <TextBox Name="CarPlateNumber" Background="Black" Foreground="White" Text="sample" FontSize="30" IsReadOnly="True" TextWrapping="Wrap"/>
+                <TextBox Name="TotalPayment" Background="Black" Foreground="White" Text="sample" FontSize="30" IsReadOnly="True" TextWrapping="Wrap"/>
+                <TextBox Name="ExitDt" Background="Black" Foreground="White" Grid.Row="0" Text="sample" FontSize="30" IsReadOnly="True" TextWrapping="Wrap"/>
+            </StackPanel>
+        </ScrollViewer>
+        <TextBlock Grid.Row="2" Text="Active sessions" FontSize="20" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="20,10,0,0"/>
+        <ComboBox Grid.Row="2" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="200,10,0,0"  SelectionChanged="GetActive_SelectionChanged"  Name="GetActive" FontSize="15" Width="200"></ComboBox>
+        <TextBlock Grid.Row="2" Text="Past sessions" FontSize="20" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,10,250,0"/>
+        <ComboBox Grid.Row="2" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,10,20,0"  SelectionChanged="GetPast_SelectionChanged"  Name="GetPast" FontSize="15" Width="200"></ComboBox>
     </Grid>
 </Window>

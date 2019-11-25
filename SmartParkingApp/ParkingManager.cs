@@ -19,9 +19,21 @@ namespace SmartParkingApp
         private int freeLeavePeriod;
         private int nextTicketNumber;
 
-        public ParkingManager()
+        private ParkingManager()
         {
             LoadData();
+        }
+
+
+        private static ParkingManager _pm;
+
+        public static ParkingManager GetParkingManager()
+        {
+            if (_pm == null)
+            {
+                _pm = new ParkingManager();
+            }
+            return _pm;
         }
 
         public ParkingSession EnterParking(string carPlateNumber)
@@ -178,7 +190,6 @@ namespace SmartParkingApp
         private const string ParkingDataFileName = "../../../../data/parkingdata.json";
         private const string UsersFileName = "../../../../data/users.json";
 
-
         private void LoadData()
         {
             tariffTable = Deserialize<List<Tariff>>(TariffsFileName);
@@ -193,6 +204,27 @@ namespace SmartParkingApp
             nextTicketNumber = activeSessions.Count > 0 ? activeSessions.Max(s => s.TicketNumber) + 1 : 1;
         }
 
+        private void SaveData()
+        {
+            var data = new ParkingData
+            {
+                Capacity = parkingCapacity,
+                ActiveSessions = activeSessions,
+                PastSessions = pastSessions
+            };
+            Serialize(ParkingDataFileName, data);
+        }
+
+        private void CompleteSession(ParkingSession session, DateTime currentDt)
+        {
+            session.ExitDt = currentDt;
+            activeSessions.Remove(session);
+            pastSessions.Add(session);
+            SaveData();
+        }
+        #endregion
+
+
         public void WriteUsersData(User user)
         {
             users.Add(user);
@@ -206,7 +238,7 @@ namespace SmartParkingApp
         public bool UsersParkingSession(int Id, out List<ParkingSession> parkingSessions)
         {
             parkingSessions = new List<ParkingSession>();
-            if(activeSessions.Exists(s => s.UserId == Id))
+            if (activeSessions.Exists(s => s.UserId == Id))
             {
                 parkingSessions.AddRange(pastSessions.FindAll(s => s.UserId == Id));
                 parkingSessions.Add(activeSessions.Find(s => s.UserId == Id));
@@ -244,24 +276,6 @@ namespace SmartParkingApp
                 return false;
         }
 
-        private void SaveData()
-        {
-            var data = new ParkingData
-            {
-                Capacity = parkingCapacity,
-                ActiveSessions = activeSessions,
-                PastSessions = pastSessions
-            };
-            Serialize(ParkingDataFileName, data);
-        }
-
-        private void CompleteSession(ParkingSession session, DateTime currentDt)
-        {
-            session.ExitDt = currentDt;
-            activeSessions.Remove(session);
-            pastSessions.Add(session);
-            SaveData();
-        }
-        #endregion
+        public int GetFilledPlaces() => Convert.ToInt32(activeSessions.Count / parkingCapacity);
     }
 }

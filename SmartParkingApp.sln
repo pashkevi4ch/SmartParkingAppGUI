@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartParkingApp", "SmartPar
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClientApplication", "ClientApplication\ClientApplication.csproj", "{D955EF25-ED3C-41EF-8509-6D276DD0812D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OwnerApplication", "OwnerApplication\OwnerApplication.csproj", "{89706648-1D49-4E36-85ED-3290082C6AB2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OwnerApplication", "OwnerApplication\OwnerApplication.csproj", "{89706648-1D49-4E36-85ED-3290082C6AB2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

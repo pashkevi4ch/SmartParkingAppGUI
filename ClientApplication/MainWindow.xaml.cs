@@ -25,7 +25,7 @@ namespace ClientApplication
         public MainWindow()
         {
             InitializeComponent();
-            this.pm = new ParkingManager();
+            pm = ParkingManager.GetParkingManager();
         }
 
         private void ContinueButton_Click(object sender, RoutedEventArgs e)

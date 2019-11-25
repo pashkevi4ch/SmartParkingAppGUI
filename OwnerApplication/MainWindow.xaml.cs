@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SmartParkingApp;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,24 @@ namespace OwnerApplication
     /// </summary>
     public partial class MainWindow : Window
     {
+        ParkingManager pm;
+        
         public MainWindow()
         {
             InitializeComponent();
+            pm = ParkingManager.GetParkingManager();
+            ParkingStatusBar.Value = pm.GetFilledPlaces();
+            ParkingStatusBox.Text = ParkingStatusBar.Value.ToString() + "%";
+        }
+
+        private void GetPast_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void GetActive_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }
