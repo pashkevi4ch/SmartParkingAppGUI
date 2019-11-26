@@ -13,12 +13,12 @@
         </Grid.RowDefinitions>
         <ScrollViewer>
             <StackPanel Name="StackInfo"  Grid.Row="0">
-                <TextBox Name="Timer" Background="Black" Foreground="White" Text= "sample" FontSize="30" IsReadOnly="True" TextWrapping="Wrap"/>
-                <TextBox Name="Ticket" Background="Black" Foreground="White" Text="sample" FontSize="30" IsReadOnly="True" TextWrapping="Wrap"/>
-                <TextBox Name="EntryDt" Background="Black" Foreground="White" Text="sample" FontSize="30" IsReadOnly="True" TextWrapping="Wrap"/>
-                <TextBox Name="CarPlateNumber" Background="Black" Foreground="White" Text="sample" FontSize="30" IsReadOnly="True" TextWrapping="Wrap"/>
-                <TextBox Name="TotalPayment" Background="Black" Foreground="White" Text="sample" FontSize="30" IsReadOnly="True" TextWrapping="Wrap"/>
-                <TextBox Name="ExitDt" Background="Black" Foreground="White" Grid.Row="0" Text="sample" FontSize="30" IsReadOnly="True" TextWrapping="Wrap"/>
+                <TextBox Name="Timer" Background="Black" Foreground="White" Text= "Time" FontSize="30" IsReadOnly="True" TextWrapping="Wrap"/>
+                <TextBox Name="Ticket" Background="Black" Foreground="White" Text="Ticket№" FontSize="30" IsReadOnly="True" TextWrapping="Wrap"/>
+                <TextBox Name="EntryDt" Background="Black" Foreground="White" Text="Entry Time" FontSize="30" IsReadOnly="True" TextWrapping="Wrap"/>
+                <TextBox Name="CarPlateNumber" Background="Black" Foreground="White" Text="Car Plate Number" FontSize="30" IsReadOnly="True" TextWrapping="Wrap"/>
+                <TextBox Name="TotalPayment" Background="Black" Foreground="White" Text="Total Payment" FontSize="30" IsReadOnly="True" TextWrapping="Wrap"/>
+                <TextBox Name="ExitDt" Background="Black" Foreground="White" Grid.Row="0" Text="Exit Time" FontSize="30" IsReadOnly="True" TextWrapping="Wrap"/>
             </StackPanel>
         </ScrollViewer>
         <Button Grid.Row="1" Content="Get Cost" VerticalAlignment="Center" HorizontalAlignment="Left"  FontSize="25" Margin="450,0,0,0" Name="Get_Cost" Click="Get_Cost_Click"/>

@@ -10,7 +10,6 @@ namespace SmartParkingApp
             Console.WriteLine("Smart parking application");
 
             var manager = ParkingManager.GetParkingManager();
-            manager.EnterParking("test");
 
         }
     }

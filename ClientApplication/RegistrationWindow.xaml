@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ClientApplication"
         mc:Ignorable="d"
-        Title="RegistrationWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen" Background="Black" Foreground="White">
+        Title="RegistrationWindow" Height="450" Width="800" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Background="Black" Foreground="White">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition MaxHeight="100"/>

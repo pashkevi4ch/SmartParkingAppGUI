@@ -15,20 +15,25 @@
         </Grid.RowDefinitions>
         <ProgressBar Grid.Row="0" Orientation="Horizontal" Minimum="0" Maximum="100" Name="ParkingStatusBar" HorizontalAlignment="Right" VerticalAlignment="Center" Height="20" Width="300" Margin="0,0,200,0"/>
         <TextBlock Text="Percent of filled spaces" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" Margin="50,0,0,5"/>
-        <TextBox Name="ParkingStatusBox" FontSize="20" FontStyle="Italic" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,150,0" Background="Black" Foreground="White"/>
+        <TextBox IsReadOnly="True" Name="ParkingStatusBox" FontSize="20" FontStyle="Italic" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,150,0" Background="Black" Foreground="White"/>
         <ScrollViewer Grid.Row="1">
             <StackPanel Name="StackInfo"  Grid.Row="1">
-                <TextBox Name="Timer" Background="Black" Foreground="White" Text= "sample" FontSize="30" IsReadOnly="True" TextWrapping="Wrap"/>
-                <TextBox Name="Ticket" Background="Black" Foreground="White" Text="sample" FontSize="30" IsReadOnly="True" TextWrapping="Wrap"/>
-                <TextBox Name="EntryDt" Background="Black" Foreground="White" Text="sample" FontSize="30" IsReadOnly="True" TextWrapping="Wrap"/>
-                <TextBox Name="CarPlateNumber" Background="Black" Foreground="White" Text="sample" FontSize="30" IsReadOnly="True" TextWrapping="Wrap"/>
-                <TextBox Name="TotalPayment" Background="Black" Foreground="White" Text="sample" FontSize="30" IsReadOnly="True" TextWrapping="Wrap"/>
-                <TextBox Name="ExitDt" Background="Black" Foreground="White" Grid.Row="0" Text="sample" FontSize="30" IsReadOnly="True" TextWrapping="Wrap"/>
+                <TextBox Name="Timer" Background="Black" Foreground="White" Text= "Time" FontSize="30" IsReadOnly="True" TextWrapping="Wrap"/>
+                <TextBox Name="Ticket" Background="Black" Foreground="White" Text="Ticket№" FontSize="30" IsReadOnly="True" TextWrapping="Wrap"/>
+                <TextBox Name="EntryDt" Background="Black" Foreground="White" Text="Entry Time" FontSize="30" IsReadOnly="True" TextWrapping="Wrap"/>
+                <TextBox Name="CarPlateNumber" Background="Black" Foreground="White" Text="Car Plate Number" FontSize="30" IsReadOnly="True" TextWrapping="Wrap"/>
+                <TextBox Name="TotalPayment" Background="Black" Foreground="White" Text="Total Payment" FontSize="30" IsReadOnly="True" TextWrapping="Wrap"/>
+                <TextBox Name="ExitDt" Background="Black" Foreground="White" Grid.Row="0" Text="Exit Time" FontSize="30" IsReadOnly="True" TextWrapping="Wrap"/>
             </StackPanel>
         </ScrollViewer>
         <TextBlock Grid.Row="2" Text="Active sessions" FontSize="20" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="20,10,0,0"/>
         <ComboBox Grid.Row="2" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="200,10,0,0"  SelectionChanged="GetActive_SelectionChanged"  Name="GetActive" FontSize="15" Width="200"></ComboBox>
         <TextBlock Grid.Row="2" Text="Past sessions" FontSize="20" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,10,250,0"/>
         <ComboBox Grid.Row="2" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,10,20,0"  SelectionChanged="GetPast_SelectionChanged"  Name="GetPast" FontSize="15" Width="200"></ComboBox>
+        <DatePicker Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Left" Width="200" Name="StartDate" SelectedDateFormat="Short"/>
+        <TextBlock Text="-" FontSize="20" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="210,0,0,5"/>
+        <DatePicker Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Left" Width="200" Name="EndDate" SelectedDateFormat="Short" Margin="230,0,0,0"/>
+        <TextBox Text="TotalProfit" Grid.Row="3" Name="TotalProfitBox" Background="Black" Foreground="White" IsReadOnly="True"  VerticalAlignment="Center" HorizontalAlignment="Left" Margin="500,0,0,0" FontSize="15"/>
+        <Button Name="GetProfit" Content="Get Profit" FontSize="15" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="120,0,0,0" Click="GetProfit_Click"/>
     </Grid>
 </Window>

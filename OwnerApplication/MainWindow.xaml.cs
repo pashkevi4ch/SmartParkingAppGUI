@@ -1,4 +1,5 @@
 ﻿using SmartParkingApp;
+using SmartParkingApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,23 +23,78 @@ namespace OwnerApplication
     public partial class MainWindow : Window
     {
         ParkingManager pm;
-        
+        List<ParkingSession> activeSessions;
+        List<ParkingSession> pastSessions;
+
         public MainWindow()
         {
             InitializeComponent();
             pm = ParkingManager.GetParkingManager();
-            ParkingStatusBar.Value = pm.GetFilledPlaces();
-            ParkingStatusBox.Text = ParkingStatusBar.Value.ToString() + "%";
+            ParkingStatusBar.Value = pm.GetFilledPlaces() * 100;
+            ParkingStatusBox.Text = (ParkingStatusBar.Value).ToString() + "%";
+            activeSessions = pm.GetActiveSessions();
+            pastSessions = pm.GetPastSessions();
+            var activeList = new List<string>();
+            foreach (var s in activeSessions)
+            {
+                activeList.Add(s.CarPlateNumber + " " + s.EntryDt.ToString());
+            }
+            GetActive.ItemsSource = activeList;
+            var pastList = new List<string>();
+            foreach (var s in pastSessions)
+            {
+                pastList.Add(s.CarPlateNumber + " " + s.EntryDt.ToString());
+            }
+            GetPast.ItemsSource = pastList;
         }
 
         private void GetPast_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            var comboBox = (ComboBox)sender;
+            var time = comboBox.SelectedItem.ToString().Split(" ",2)[1];
+            var session = pastSessions.First(s => s.EntryDt.ToString() == time);
+            TextBuilder(session);
         }
 
         private void GetActive_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            var comboBox = (ComboBox)sender;
+            var time = comboBox.SelectedItem.ToString().Split(" ",2)[1];
+            var session = activeSessions.First(s => s.EntryDt.ToString() == time);
+            TextBuilder(session);
+        }
+        private void TextBuilder(SmartParkingApp.Models.ParkingSession session)
+        {
+            if (session.ExitDt == null)
+            {
+                Timer.Text = "Total Minutes: " + (Convert.ToInt32((DateTime.Now - session.EntryDt).TotalMinutes)).ToString();
+                ExitDt.Text = "Exit Time: No Info";
+            }
+            else
+            {
+                Timer.Text = "Total Minutes: " + (Convert.ToInt32((session.ExitDt - session.EntryDt)?.TotalMinutes).ToString());
+                ExitDt.Text = "Exit Time: " + session.ExitDt.ToString();
+            }
+            Ticket.Text = "Ticket №" + session.TicketNumber.ToString();
+            EntryDt.Text = "Entry Time: " + session.EntryDt.ToString();
+            CarPlateNumber.Text = "Car Plate Number: " + session.CarPlateNumber;
+            if (session.TotalPayment == null)
+                TotalPayment.Text = "Total Payment: 0";
+            else
+                TotalPayment.Text = "Total Payment: " + session.TotalPayment.ToString();
+        }
 
+        private void GetProfit_Click(object sender, RoutedEventArgs e)
+        {
+            var startDate = StartDate.SelectedDate;
+            var endDate = EndDate.SelectedDate;
+            if (startDate != null && endDate != null)
+            {
+                var sessions = pm.GetSessionsByDate(startDate, endDate);
+                TotalProfitBox.Text = pm.TotalProfit(sessions).ToString();
+            }
+            else
+                MessageBox.Show("Please enter both dates");
         }
     }
 }

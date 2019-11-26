@@ -227,6 +227,21 @@ namespace SmartParkingApp
 
         public void WriteUsersData(User user)
         {
+            foreach(var s in pastSessions)
+            {
+                if (s.CarPlateNumber == user.CarPlateNumber)
+                {
+                    s.User = user;
+                    s.UserId = user.Id;
+                }
+            }
+            if (activeSessions.Exists(s => s.CarPlateNumber == user.CarPlateNumber))
+            {
+                var session = activeSessions.Find(s => s.CarPlateNumber == user.CarPlateNumber);
+                session.User = user;
+                session.UserId = user.Id;
+            }
+            SaveData();
             users.Add(user);
             Serialize(UsersFileName, users);
         }
@@ -276,6 +291,22 @@ namespace SmartParkingApp
                 return false;
         }
 
-        public int GetFilledPlaces() => Convert.ToInt32(activeSessions.Count / parkingCapacity);
+        public double GetFilledPlaces() => (double)activeSessions.Count / parkingCapacity;
+
+        public List<ParkingSession> GetActiveSessions() => activeSessions;
+
+        public List<ParkingSession> GetPastSessions() => pastSessions;
+
+        public List<ParkingSession> GetSessionsByDate(DateTime? startDate, DateTime? endDate) => pastSessions.FindAll(s => s.ExitDt >= startDate && s.ExitDt <= endDate);
+
+        public decimal TotalProfit(List<ParkingSession> parkingSessions)
+        {
+            var sum = 0M;
+            foreach(var s in parkingSessions)
+            {
+                sum += s.TotalPayment ?? 0;
+            }
+            return sum;
+        }
     }
 }

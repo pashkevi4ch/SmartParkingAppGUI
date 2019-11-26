@@ -34,8 +34,15 @@ namespace ClientApplication
             }
             else
             {
-                var lastSession = sessionList[sessionList.Count - 1];
-                TextBuilder(lastSession);
+                if (sessionList.Count != 0)
+                {
+                    var lastSession = sessionList[sessionList.Count - 1];
+                    TextBuilder(lastSession);
+                }
+                else
+                {
+                    MessageBox.Show("История парковки отсутствует");
+                }
             }
             var contentList = new List<DateTime>();
             foreach( var s in sessionList)
