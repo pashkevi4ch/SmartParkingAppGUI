@@ -276,7 +276,7 @@ namespace SmartParkingApp
         }
 
 
-        public bool CheckNewUser(User user) => users == null || !users.Exists(u => u.Login == user.Login);
+        public bool CheckNewUser(User user) => users == null || !users.Exists(u => u.Login == user.Login && u.CarPlateNumber == user.CarPlateNumber);
 
         public bool UserLogin(string login, string password, out User user)
         {
@@ -307,6 +307,17 @@ namespace SmartParkingApp
                 sum += s.TotalPayment ?? 0;
             }
             return sum;
+        }
+
+        public int GetNumberOfSessionsByTime(DateTime start,DateTime end)
+        {
+            var count = 0;
+            foreach(var s in pastSessions)
+            {
+                if (s.ExitDt.Value <= end && s.ExitDt.Value >= start)
+                    count += 1;
+            }
+            return count;
         }
     }
 }

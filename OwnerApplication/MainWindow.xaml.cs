@@ -86,8 +86,8 @@ namespace OwnerApplication
 
         private void GetProfit_Click(object sender, RoutedEventArgs e)
         {
-            var startDate = StartDate.SelectedDate;
-            var endDate = EndDate.SelectedDate;
+            var startDate = StartDateProfit.SelectedDate;
+            var endDate = EndDateProfit.SelectedDate;
             if (startDate != null && endDate != null)
             {
                 var sessions = pm.GetSessionsByDate(startDate, endDate);
@@ -95,6 +95,37 @@ namespace OwnerApplication
             }
             else
                 MessageBox.Show("Please enter both dates");
+        }
+
+        private void AnalizeButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (Start != null && End != null)
+            {
+                var counter = new List<List<int>>();
+                var tmpDate = Start.SelectedDate;
+                while (tmpDate <= End.SelectedDate)
+                {
+                    var countList = new List<int>();
+                    var tmpHour = tmpDate.Value;
+                    while (tmpHour.Hour <= 23)
+                    {
+                        countList.Add(pm.GetNumberOfSessionsByTime(tmpHour, tmpHour.AddMinutes(59).AddSeconds(59)));
+                        tmpHour.AddHours(1);
+                    }
+                    counter.Add(countList);
+                    tmpHour.AddDays(1);
+                }
+                foreach(var c in counter)
+                {
+                    DataGrid data = new DataGrid();
+                    DataGridCars.Columns.Add(data);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please enter both dates");
+            }
+                
         }
     }
 }
