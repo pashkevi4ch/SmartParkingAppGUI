@@ -308,13 +308,13 @@ namespace SmartParkingApp
             }
             return sum;
         }
-
+        
         public int GetNumberOfSessionsByTime(DateTime start,DateTime end)
         {
             var count = 0;
             foreach(var s in pastSessions)
             {
-                if (s.ExitDt.Value <= end && s.ExitDt.Value >= start)
+                if (s.EntryDt <= end && s.ExitDt.Value >= start)
                     count += 1;
             }
             return count;

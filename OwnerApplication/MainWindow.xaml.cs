@@ -20,8 +20,15 @@ namespace OwnerApplication
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
+
+    
+
     public partial class MainWindow : Window
     {
+        private class DataGridInfo
+        {
+            public int Quantity { get; set; }
+        }
         ParkingManager pm;
         List<ParkingSession> activeSessions;
         List<ParkingSession> pastSessions;
@@ -117,8 +124,7 @@ namespace OwnerApplication
                 }
                 foreach(var c in counter)
                 {
-                    DataGrid data = new DataGrid();
-                    DataGridCars.Columns.Add(data);
+                    var dataColumn = new DataGridTextColumn();
                 }
             }
             else
